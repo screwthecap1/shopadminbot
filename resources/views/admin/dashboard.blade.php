@@ -9,7 +9,7 @@
         <table class="table-auto w-full border">
             <thead>
             <tr>
-                <th class="border px-4 py-2">ID</th>
+                <th class="border px-4 py-2">№</th>
                 <th class="border px-4 py-2">Name</th>
                 <th class="border px-4 py-2">Email</th>
                 <th class="border px-4 py-2">Status</th>

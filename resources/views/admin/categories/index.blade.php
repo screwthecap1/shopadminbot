@@ -7,7 +7,7 @@
             <a href="{{ route('admin.categories.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Add</a>
         </div>
 
-        <table class="table-auto w-full border">
+        <table class="table-auto w-full border text-center">
             <thead>
             <tr>
                 <th class="border px-4 py-2">№</th>

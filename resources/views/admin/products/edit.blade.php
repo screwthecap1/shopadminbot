@@ -5,7 +5,7 @@
         <h1 class="text-2xl font-bold mb-4">Edit Product</h1>
 
         <form action="{{ route('admin.products.update', $product) }}" method="POST"
-              class="bg-white p-4 shadow rounded w-full max-w-lg mx-auto">
+              class="bg-white p-4 shadow rounded w-full max-w-lg mx-auto" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -31,6 +31,12 @@
                 <input type="number" name="stock" id="stock" class="w-full border rounded px-3 py-2"
                        value="{{ old('stock', $product->stock) }}" required>
             </div>
+
+            <div class="mb-4">
+                <label for="image" class="block font-medium">Image</label>
+                <input type="file" name="image" id="image" class="w-full border rounded px-3 py-2">
+            </div>
+
 
             <div class="mb-4">
                 <label for="category_id" class="block font-medium">Category</label>

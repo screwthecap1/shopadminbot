@@ -15,6 +15,7 @@
                 <th class="border px-4 py-2">Category</th>
                 <th class="border px-4 py-2">Price</th>
                 <th class="border px-4 py-2">Quantity</th>
+                <th class="border px-4 py-2">Image</th>
                 <th class="border px-4 py-2">Action</th>
             </tr>
             </thead>
@@ -26,6 +27,14 @@
                     <td class="border px-4 py-2">{{ $product->category->name ?? '-' }}</td>
                     <td class="border px-4 py-2">{{ $product->price }}</td>
                     <td class="border px-4 py-2">{{ $product->stock }}</td>
+                    <td class="border px-4 py-2">
+                        @if($product->image)
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="image"
+                                 class="w-16 h-16 object-cover mx-auto block">
+                        @else
+                            <span>-</span>
+                        @endif
+                    </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.products.edit', $product) }}" class="text-green-500">Edit</a>
                         |

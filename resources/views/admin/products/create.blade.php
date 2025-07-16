@@ -4,7 +4,7 @@
     <div class="container mx-auto p-4">
         <h1 class="text-2xl font-bold mb-4">Creating product</h1>
 
-        <form action="{{ route('admin.products.store') }}" method="POST" class="bg-white p-4 shadow rounded w-full">
+        <form action="{{ route('admin.products.store') }}" method="POST" class="bg-white p-4 shadow rounded w-full" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-4">
@@ -24,7 +24,12 @@
 
             <div class="mb-4">
                 <label for="stock" class="block font-medium">Stock</label>
-                <input type="number" name="stock" id="stock" class="w-full border rounded px-3 py-2" required min="0">
+                <input type="number" name="stock" id="stock" class="w-full border rounded px-3 py-2" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="image" class="block font-medium">Stock</label>
+                <input type="file" name="image" id="image" class="w-full border rounded px-3 py-2" required>
             </div>
 
             <div class="mb-4">
@@ -43,7 +48,6 @@
                     Cancel
                 </a>
             </div>
-
         </form>
     </div>
 @endsection

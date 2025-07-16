@@ -7,6 +7,40 @@
             <a href="{{ route('admin.products.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Add</a>
         </div>
 
+        <form method="GET" action="{{ route('admin.products.index') }}" class="flex flex-wrap gap-4 mb-6">
+
+            <input type="text" name="search" placeholder="Search by name"
+                   value="{{ request('search') }}"
+                   class="border px-3 py-2 rounded w-48">
+
+            <select name="category_id" class="border px-3 py-2 rounded w-48">
+                <option value="">All categories</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}"
+                        {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+
+            <input type="number" step="0.01" name="price_from" placeholder="Price from"
+                   value="{{ request('price_from') }}"
+                   class="border px-3 py-2 rounded w-32">
+
+            <input type="number" step="0.01" name="price_to" placeholder="Price to"
+                   value="{{ request('price_to') }}"
+                   class="border px-3 py-2 rounded w-32">
+
+            <button type="submit"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                Filter
+            </button>
+
+            <a href="{{ route('admin.products.index') }}"
+               class="text-gray-600 underline px-3 py-2">Reset</a>
+        </form>
+
+
         <table class="table-auto w-full border text-center">
             <thead>
             <tr>
@@ -52,5 +86,10 @@
             @endforelse
             </tbody>
         </table>
+
+        <div class="mt-4">
+            {{ $products->appends(request()->query())->links() }}
+        </div>
+
     </div>
 @endsection

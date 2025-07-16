@@ -1,30 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Category;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ProductController extends Controller
+class ProductApiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::with('category')->get();
-        return view('admin.products.index', compact('products'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $categories = Category::all();
-        return view('admin.products.create', compact('categories'));
+        return ProductResource::collection(Product::with('category')->get());
     }
 
     /**
@@ -45,9 +36,9 @@ class ProductController extends Controller
             $validated['image'] = $request->file('image')->store('products', 'public');
         }
 
-        Product::create($validated);
+        $product = Product::create($validated);
 
-        return redirect()->route('admin.products.index');
+        return new ProductResource($product);
     }
 
     /**
@@ -55,16 +46,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        $categories = Category::all();
-        return view('admin.products.edit', compact('product', 'categories'));
+        return new ProductResource($product->load('category'));
     }
 
     /**
@@ -90,7 +72,7 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return redirect()->route('admin.products.index');
+        return new ProductResource($product);
     }
 
     /**
@@ -104,6 +86,6 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect()->route('admin.products.index');
+        return response()->json(['message' => 'Deleted'], 204);
     }
 }

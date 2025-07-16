@@ -6,6 +6,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Exports\ProductsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,9 +26,11 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/products/export', function () {
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    })->name('products.export');
+
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
-});
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
 });

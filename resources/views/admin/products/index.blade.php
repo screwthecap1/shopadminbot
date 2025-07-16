@@ -40,8 +40,11 @@
                class="text-gray-600 underline px-3 py-2">Reset</a>
         </form>
 
+        <a href="{{ route('admin.products.export') }}" class="bg-green-500 text-white px-4 py-2 rounded ml-2">
+            Export to Excel
+        </a>
 
-        <table class="table-auto w-full border text-center">
+        <table class="table-auto w-full border text-center mt-6">
             <thead>
             <tr>
                 <th class="border px-4 py-2">№</th>

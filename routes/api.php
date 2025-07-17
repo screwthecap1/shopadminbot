@@ -36,4 +36,4 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-Route::get('/pvz', [CdekController::class, 'pvz']);
+Route::middleware(['log.cdek'])->get('/pvz', [CdekController::class, 'pvz']);

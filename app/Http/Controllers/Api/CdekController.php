@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Services\CdekService;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePvzRequest;
 
 class CdekController extends Controller
 {
@@ -15,7 +15,7 @@ class CdekController extends Controller
         $this->cdek = $cdek;
     }
 
-    public function pvz(Request $request)
+    public function pvz(StorePvzRequest $request)
     {
         $city = $request->query('city');
 

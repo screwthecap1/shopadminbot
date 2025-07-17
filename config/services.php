@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'cdek' => [
+        'account' => env('CDEK_ACCOUNT'),
+        'password' => env('CDEK_PASSWORD'),
+        'api_url' => env('CDEK_API_URL'),
+        'auth_url' => env('CDEK_AUTH_URL'),
+        'cache_ttl' => env('CDEK_CACHE_TTL', 3600),
+    ],
 ];

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Controllers\Api\ProductApiController;
+use App\Http\Controllers\Api\CdekController;
 
 Route::post('/login', function (Request $request) {
     $request->validate([
@@ -34,3 +35,5 @@ Route::middleware('auth:sanctum')->group(function () {
         return response()->json(['message' => 'Logged out']);
     });
 });
+
+Route::get('/pvz', [CdekController::class, 'pvz']);

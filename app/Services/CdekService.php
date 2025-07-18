@@ -28,12 +28,19 @@ class CdekService
     {
         $token = $this->getAccessToken();
 
-        $response = Http::withToken($token)->get(config('services.cdek.api_url'), [
+        $response = Http::withToken($token)->get(config('services.cdek.api_url') . 'deliverypoints', [
             'city' => $city,
         ]);
 
-        return $response->successful()
-            ? $response->json()
-            : [];
+        if (!$response->successful()) {
+            return [];
+        }
+
+        $data = $response->json();
+
+        return array_values(array_filter($data, function ($pvz) use ($city) {
+            return isset($pvz['location']['city']) &&
+                mb_strtolower(trim($pvz['location']['city'])) === mb_strtolower(trim($city));
+        }));
     }
 }

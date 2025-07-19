@@ -6,6 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\CdekController;
 
 use App\Exports\ProductsExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -42,3 +43,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
 });
+
+Route::get('/pvz', [CdekController::class, 'pvz']);

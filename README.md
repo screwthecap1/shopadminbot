@@ -1,43 +1,26 @@
-# ShopAdminBot (Laravel 12)
+# ShopAdminBot
 
-Мини-панель администратора для управления пользователями.  
-Проект выполнен на **Laravel 12** с использованием **Breeze** и **TailwindCSS**.
+Laravel-приложение для оформления заказов с выбором пункта выдачи (ПВЗ) через API CDEK и уведомлением администратора через Telegram-бот.
 
 ---
 
-## Стек технологий
+## Функционал
 
-- Laravel 12 (PHP 8+)
-- Laravel Breeze (Blade)
-- TailwindCSS
+- Авторизация пользователей
+- Создание заказов с выбором товара и ПВЗ
+- Получение списка ПВЗ по городу через CDEK API
+- Отправка уведомлений о заказах в Telegram
+- Просмотр списка и деталей заказов
+- Панель управления заказами для пользователей
+
+---
+
+## Технологии
+
+- Laravel 12
+- PHP 8.4
+- Telegram Bot API (через irazasyed/telegram-bot-sdk)
+- CDEK API
+- Blade-шаблоны
 - MySQL
-- Vite
-- Node.js / npm
-
----
-
-## Возможности (в разработке)
-
-- Регистрация и авторизация пользователей
-- Разделение на админов и обычных пользователей
-- Защищённые маршруты `/admin`
-- Подключение к базе данных через `.env`
-
----
-
-## Установка
-
-```bash
-git clone https://github.com/your-username/shopadminbot.git
-cd shopadminbot
-
-composer install
-cp .env.example .env
-php artisan key:generate
-
-# Настрой .env (DB и т.д.)
-
-npm install
-npm run dev
-
-php artisan migrate
+- Tailwind

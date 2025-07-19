@@ -6,6 +6,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Models\Product;
 use App\Services\CdekService;
+use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,9 +51,18 @@ class OrderController extends Controller
             'status' => 'new',
         ]);
 
+        $order->load('product');
+
+        app(TelegramService::class)->sendMessage("
+        <b>Новый заказ!</b>\n
+        <b>Товар:</b> {$order->product->name}\n
+        <b>ПВЗ:</b> {$order->pvz_code}\n
+        <b>Комментарий:</b> {$order->comment}
+        ");
+
+
         return redirect()->route('orders.show', $order->id)->with('success', 'Заказ успешно создан!');
     }
-    
 
     /**
      * Display the specified resource.

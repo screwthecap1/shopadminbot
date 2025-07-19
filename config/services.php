@@ -42,4 +42,9 @@ return [
         'auth_url' => env('CDEK_AUTH_URL'),
         'cache_ttl' => env('CDEK_CACHE_TTL', 3600),
     ],
+
+    'telegram' => [
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+        'chat_id' => env('TELEGRAM_CHAT_ID'),
+    ]
 ];
